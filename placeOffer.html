@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Catalog </title>
+        <script type="text/javascript" src="assets/js/jquery-3.4.1.js"></script>
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <script src="assets/bootstrap/js/popper.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/web3.min.js"></script>
+        <script src="./marketabi.js"></script>
+        <script src="./abi.js"></script>
+        <script src="./index.js"></script>
+        <script src="./marketplace.js"></script>
+        <script src="assets/js/helper.js"></script>
+
+        <link rel="stylesheet" href="assets/css/mystyle.css">
+        <link rel="stylesheet" href="assets/css/colors.css">
+        <link rel="stylesheet" href="assets/css/factory.css">
+        <link rel="stylesheet" href="assets/css/frontend.css">
+        <link rel="stylesheet" href="assets/css/catCatalog.css">
+        <link rel="stylesheet" href="assets/css/cats.css">
+        <link rel="stylesheet" href="assets/css/animations.css">
+        <link rel="stylesheet" href="assets/css/placeOffer.css">
+        <link rel="stylesheet" href="assets/css/loaders.css">
+      </head>
+
+      <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top" style="background: rgba(255,255,255,0.5)!important;">
+          <div class="container-fluid">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarExample01"
+              aria-controls="navbarExample01"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarExample01">
+              <a class="logo" href="index.html">
+                <h3 class="navbar-nav mr-auto mb-2 mb-lg-0 c-white text-gradient">Kitties R' Us</h3>
+              </a>
+              <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="k-factory.html">K-Factory</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="catMarket.html">K-Market </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="catalog.html">Catalog</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="breeding.html">Breeding</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+  </header>
+  
+  <div class="animation-wrapper">
+      <div class="particle particle-1"></div>
+  </div>
+
+  <div class="container p-5" style="margin-top: 10vh; margin-bottom: 10vh;">
+    <div align="center">
+    <h1 class="c-white">Kitty Offer</h1>
+</div>
+
+<div id="message" align="center">
+    
+</div>
+
+<div class="container middleBox" style="margin-top: 36px;margin-bottom: -85px;">
+    <div class="row" id="catsOfferDiv">
+        
+        <div class="catinfoDiv">
+            <ul class="cattributes" style="list-style: none;">
+                <li><span id="eyeName"></span></li>
+                <li><span id="patternName"></span></li>
+                <li><span id="animationName"></span></li>
+                <li><span id="genName"></span></li>
+                <li><span id="dnaName"></span></li>
+            </ul>
+            <div id="offerForm">
+                <div class="form-group" id="offerBox">
+                  <label for="exampleInputEmail1" class="c-white">Sell Price</label>
+                  <input type="number" class="form-control" id="sellprice" aria-describedby="emailHelp" placeholder="Enter BNB price">
+                </div>
+                <div id="offerBtns">
+                    <button type="button" class="btn btn-secondary light-b-shadow" id= "approveBtn" onclick="grantKittyApproval()">Approve Contract</button>
+                <button type="button" class="btn btn-success light-b-shadow" id= "offerBtn" onclick="placeKittyOffer()">Place Offer</button>
+                <button type="button" class="btn btn-danger light-b-shadow hidden" id="cancelBtn" onclick="cancelOffer()">Cancel Offer</button>
+                </div>
+            </div>
+            <div id="buyBtn" class="btn-group hidden">
+                <button type="button" class="btn btn-success light-b-shadow" onclick="buyKitty()">Buy Kitty</button>
+                <button type="button" class="btn btn-light ml-2 light-b-shadow" id="ethprice"></button>
+            </div>           
+        </div> 
+    </div>
+</div>
+
+</div>
+
+<div class="cont loader-background" id="deletediv" hidden>
+  <div class="center">
+  <div class="paper"></div>
+    <button class="delete_button"><div class='loader_delete'>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      </div>Deleting</button>
+    <div class="g-cont">
+      <div class="garbage"></div>
+      <div class="garbage"></div>
+      <div class="garbage"></div>
+      <div class="garbage"></div>
+      <div class="garbage"></div>
+      <div class="garbage"></div>
+      <div class="garbage"></div>
+      <div class="garbage"></div>
+    </div>
+  </div>
+</div>
+
+<div class="loader-background" id="catalog-loader">
+  <div class="loader">
+    <div>
+      <ul>
+        <li>
+          <svg viewBox="0 0 90 120" fill="currentColor">
+            <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+          </svg>
+        </li>
+        <li>
+          <svg viewBox="0 0 90 120" fill="currentColor">
+            <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+          </svg>
+        </li>
+        <li>
+          <svg viewBox="0 0 90 120" fill="currentColor">
+            <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+          </svg>
+        </li>
+        <li>
+          <svg viewBox="0 0 90 120" fill="currentColor">
+            <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+          </svg>
+        </li>
+        <li>
+          <svg viewBox="0 0 90 120" fill="currentColor">
+            <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+          </svg>
+        </li>
+        <li>
+          <svg viewBox="0 0 90 120" fill="currentColor">
+            <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+          </svg>
+        </li>
+      </ul>
+    </div><span>Loading</span>
+  </div>
+  </div>
+  
+<footer align="left" style="background: rgba(255,255,255,0.5)!important;">
+  <p>NFT project created by Kareem Williams </br>
+    <a href="http://www.github.com/KaiStryker"> www.github.com/KaiStryker </a>
+  </p>
+</footer>
+
+<script>
+  $(document).ready(() => {
+      setTimeout(() => {
+          pullKittyforOfferpage()
+          checkifMarketContractisApproved()
+          checkOffer()
+      }, 500)
+  })
+
+ 
+</script>
+
+</body>
+
+
+
+<script src="assets/js/colors.js"></script>
+<script src="assets/js/catOffer/placeOfferBuild.js"></script>
+<script src="assets/js/catOffer/placeOffer.js"></script>
+
+
+
+
+</html>

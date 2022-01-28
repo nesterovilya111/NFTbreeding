@@ -1,0 +1,165 @@
+.catBox {
+    background-color: ghostwhite;
+    border-radius: 10px;
+    padding-top: 50px;
+    padding-left: 23px;
+    padding-bottom: 170px;
+    max-width: 300px;
+}
+
+.cattributes {
+    padding: 25px;
+    background-color: #ededed;
+    border-radius: 10px;
+}
+
+.dnaDiv {
+    position: absolute;
+    left:20px;
+    bottom: 5px;
+
+}
+
+.patterncolor{
+    position: relative;
+    margin-right: 33px;
+    margin-top: 15px;
+}
+
+.row{
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-right: -46px;
+    margin-left: -46px;
+}
+
+
+.hide{
+    display: none;
+}
+
+#kittyButtons {
+    position: relative;
+    display: flex;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+}
+
+.defaultButton{
+    margin: 5px;
+}
+
+.randomButton{
+    margin: 5px;
+}
+
+.submitButton{
+    position: relative;
+    margin: 5px;
+}
+
+/* Popup box BEGIN */
+.event-background{
+    background:rgba(256,236,191,0.4);
+    cursor:pointer;
+    display:none;
+    height:100%;
+    position:fixed;
+    text-align:center;
+    top:0;
+    width:100%;
+    z-index:10000;
+}
+.event-background .helper{
+    display:inline-block;
+    height:100%;
+    vertical-align:middle;
+}
+.event-background > div {
+    background-color: #fff;
+    display: inline-block;
+    height: auto;
+    max-width: 551px;
+    min-height: 100px;
+    vertical-align: middle;
+    width: 60%;
+    position: relative;
+    border-radius: 8px;
+    padding: 15px 5%;
+}
+.close-button {
+    background-color: #fff;
+    border: 3px solid #999;
+    border-radius: 50px;
+    cursor: pointer;
+    display: inline-block;
+    font-family: arial;
+    font-weight: bold;
+    position: absolute;
+    top: -10px;
+    right: -15px;
+    font-size: 19px;
+    line-height: 21px;
+    width: 30px;
+    height: 30px;
+    text-align: -webkit-match-parent;
+}
+.close-button:hover {
+    background-color: #ccc;
+}
+
+.mint-background{
+    background:rgba(256,236,191,0.4);
+    cursor:pointer;
+    display:none;
+    height:100%;
+    position:fixed;
+    text-align:center;
+    top:0;
+    width:100%;
+    z-index:10000;
+}
+.mint-background .helper{
+    display:inline-block;
+    height:100%;
+    vertical-align:middle;
+}
+.mint-background > div {
+    background-color: #fff;
+    display: inline-block;
+    height: auto;
+    max-width: 551px;
+    min-height: 100px;
+    vertical-align: middle;
+    width: 60%;
+    position: relative;
+    border-radius: 8px;
+    padding: 15px 5%;
+}
+
+.gif_image {
+    position: relative;
+    max-height: fit-content;
+    max-width: -webkit-fill-available;
+    border-radius: 39%;
+}
+/* Popup box ENDS */
+
+.flexwrap{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: initial;
+    justify-content: flex-start;
+    align-content: space-between;
+    align-items: flex-start;
+}
+
+
+
+
+

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitty Breeding</title>
+    <script type="text/javascript" src="assets/js/jquery-3.4.1.js"></script>
+    
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <script src="assets/bootstrap/js/popper.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/web3.min.js"></script>
+    <script src="./abi.js"></script>
+    <script src="assets/js/glider.js"></script>
+    <script src="./index.js"></script>
+    <script src="assets/js/helper.js"></script>
+
+    <link rel="stylesheet" href="assets/css/mystyle.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/glider.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/cats.css">
+    <link rel="stylesheet" href="assets/css/colors.css">
+    <link rel="stylesheet" href="assets/css/factory.css">
+    <link rel="stylesheet" href="assets/css/frontend.css">
+    <link rel="stylesheet" href="assets/css/catCatalog.css">
+    <link rel="stylesheet" href="assets/css/catBreeding.css">
+
+  
+    <script>
+    window.addEventListener('load',function(){
+        document.querySelector('.glider').addEventListener('glider-slide-visible', function(event){
+            var glider = Glider(this);
+        });
+        document.querySelector('.glider').addEventListener('glider-slide-hidden', function(event){
+        });
+        document.querySelector('.glider').addEventListener('glider-refresh', function(event){
+        });
+        document.querySelector('.glider').addEventListener('glider-loaded', function(event){
+        });
+
+        window._ = new Glider(document.querySelector('.glider'), {
+            slidesToShow: 1, //'auto',
+            slidesToScroll: 1,
+            itemWidth: 300,
+            draggable: true,
+            scrollLock: true,
+            dots: '.dots',
+            rewind: false,
+            arrows: {
+                prev: '.glider-prev',
+                next: '.glider-next'
+            },
+            responsive: [
+            {
+                // screens greater than >= 775px
+                breakpoint: 775,
+                settings: {
+                    // Set to `auto` and provide item width to adjust to viewport
+                    slidesToShow: 'auto',
+                    slidesToScroll: 'auto',
+                    itemWidth: 150,
+                    duration: 0.25
+                }
+                },{
+                // screens greater than >= 1024px
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 'auto',
+                    slidesToScroll: 'auto',
+                    itemWidth: 150,
+                    duration: 0.25
+                }
+            }
+          ]
+        });
+      });
+    </script>
+
+    <style type="text/css">
+        * {
+            box-sizing: border-box
+        }
+        html, body {
+            width: 100%;
+            overflow: scroll;
+        }
+        .glider-contain {
+            width: 90%;
+            max-width: 955px;
+            margin: 35px auto;
+        }
+        .glider-slide {
+            min-height: 150px;
+        }
+        .glider-slide img {
+            width: 100%;
+        }
+</style>
+</head>
+<body>
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top" style="background: rgba(255,255,255,0.5)!important;">
+          <div class="container-fluid">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarExample01"
+              aria-controls="navbarExample01"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarExample01">
+              <a class="logo" href="index.html">
+                <h3 class="navbar-nav mr-auto mb-2 mb-lg-0 c-white text-gradient">Kitties R' Us</h3>
+              </a>
+              <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="k-factory.html">K-Factory</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="catMarket.html">K-Market </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="catalog.html">Catalog</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Breeding</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+  </header>
+
+  <div class="animation-wrapper">
+    <div class="particle particle-1"></div>
+</div>
+
+
+
+<div class="container p-5" style="margin-top: 12vh;margin-bottom: 3vh;display: flex;
+flex-direction: column;">
+
+
+
+    <div align="center">
+    <h1 class="c-white">Breeding</h1>
+    </div>
+
+    <div class="breedingInstructions">
+        <h2 class="white-btn" style="background: ghostwhite!important;">
+            1. Select two Kitties for breeding.
+        <br>
+            2. Preview Your Kitty Choices.
+        <br>
+            3. Breed and Give them Some Privacy!
+        </h2>
+    </div>
+   
+
+<div class="glider-contain">
+    <h3 class="c-white">Select Mom and Dad Genes for Breeding</h3>
+<form id="kittyForm">
+<div class="glider" id="catsDiv">
+</div>
+</form>
+
+<button aria-label="Previous" class="glider-prev">«</button>
+<button aria-label="Next" class="glider-next">»</button>
+<div role="tablist" class="dots"></div>
+
+</div>
+
+<div class="container middleBox" style="margin-top: 10px;
+margin-bottom: 40px;">
+  <h3 class="c-white">Preview Kitties</h3>
+    <div class="row" id="catsDisplayBox">
+        <div class="featureBox" id="dadKitty">
+           
+        </div>
+        <div class="featureBox" id="mumKitty">
+            
+        </div>
+    </div>
+
+</div>  
+
+<button type="button" class="btn btn-success light-b-shadow breedingButton" onclick="breedKitty()">Breed Kitty</button>
+
+</div>
+
+<div class="mint-background">
+  <span class="helper"></span>
+      <div class="light-b-shadow" style = "background: linear-gradient(to right, #fc5c7d, #6a82fb);">
+          <!-- <div class= "close-button">&times;</div> -->
+          <img src="https://i.pinimg.com/originals/20/1d/8c/201d8cbefaf236f56dea366d1691da01.gif" 
+          alt="cats-gif" class="gif_image light-b-shadow">
+          <br></br>
+          <h2 class="c-white"> Bedroom action taking place, please be patient!</h2>
+      </div>
+          
+      </div>
+</div>
+<footer align="left" style="background: rgba(255,255,255,0.5)!important;">
+  <!-- <p>NFT project created by Kareem Williams </br>
+    <a href="http://www.github.com/KaiStryker"> www.github.com/KaiStryker </a>
+  </p> -->
+</footer>
+<script>
+  // when page load create the catalog
+  $(document).ready(() => {
+   setTimeout(() => {
+       pullCarousel()
+   }, 300)
+});
+</script>
+
+</body>
+
+
+<script src="assets/js/colors.js"></script>
+<script src="assets/js/breeding/breedingBuild.js"></script>
+<script src="assets/js/breeding/breedingSettings.js"></script>
+</html>
